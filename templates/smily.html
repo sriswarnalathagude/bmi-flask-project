@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>BMI Calculator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>BMI Calculator</h1>
+
+        <p>Check your health instantly</p>
+
+        <form action="/result" method="POST">
+
+            <input type="number"
+                   step="0.1"
+                   name="weight"
+                   placeholder="Enter Weight in kg"
+                   required>
+
+
+            <select name="height_type"
+                    id="height_type"
+                    onchange="toggleHeightInputs()">
+
+                <option value="meters">
+                    Height in Meters
+                </option>
+
+                <option value="feet">
+                    Height in Feet
+                </option>
+
+                <option value="inches">
+                    Height in Inches
+                </option>
+
+            </select>
+
+
+            <!-- Meters -->
+
+            <div id="meter_input">
+
+                <input type="number"
+                       step="0.01"
+                       name="height_meters"
+                       placeholder="Enter Height in meters">
+
+            </div>
+
+
+            <!-- Feet -->
+
+            <div id="feet_input" style="display:none;">
+
+                <input type="number"
+                       step="0.01"
+                       name="height_feet"
+                       placeholder="Enter Height in feet">
+
+            </div>
+
+
+            <!-- Inches -->
+
+            <div id="inch_input" style="display:none;">
+
+                <input type="number"
+                       step="0.01"
+                       name="height_inches"
+                       placeholder="Enter Height in inches">
+
+            </div>
+
+
+            <button type="submit">
+                Calculate BMI
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        function toggleHeightInputs(){
+
+            let type =
+                document.getElementById("height_type").value;
+
+            document.getElementById("meter_input").style.display = "none";
+
+            document.getElementById("feet_input").style.display = "none";
+
+            document.getElementById("inch_input").style.display = "none";
+
+
+            if(type === "meters"){
+
+                document.getElementById("meter_input").style.display = "block";
+            }
+
+            else if(type === "feet"){
+
+                document.getElementById("feet_input").style.display = "block";
+            }
+
+            else{
+
+                document.getElementById("inch_input").style.display = "block";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
